@@ -14,5 +14,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         categoryListView.adapter = CatergoryAdapter(this,DataService.categories)
+
+        categoryListView.setOnItemClickListener { adapterView, view, position, l ->
+            var category  = DataService.categories[position]
+            println("Item Click")
+        }
     }
 }
