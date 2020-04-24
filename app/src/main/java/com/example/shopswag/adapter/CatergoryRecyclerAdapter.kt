@@ -14,7 +14,7 @@ import com.example.shopswag.model.Category
 import com.example.shopswag.services.DataService
 import kotlinx.android.synthetic.main.categoary_list_item.view.*
 
-class CatergoryRecyclerAdapter(val context: Context, val catergories: List<Category>) :
+class CatergoryRecyclerAdapter(val context: Context, val catergories: List<Category>,val itemClick:(Category)->Unit) :
     RecyclerView.Adapter<CatergoryRecyclerAdapter.RecycleHolder>() {
 
     /**
@@ -25,7 +25,7 @@ class CatergoryRecyclerAdapter(val context: Context, val catergories: List<Categ
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecycleHolder {
        val view = LayoutInflater.from(context).inflate(R.layout.categoary_list_item,parent,false)
-        return RecycleHolder(view)
+        return RecycleHolder(view,itemClick)
     }
 
     /**
@@ -46,7 +46,7 @@ class CatergoryRecyclerAdapter(val context: Context, val catergories: List<Categ
      * This class hold the references of UI element in recyclerview/list
      * Prepared the data child view to display a data according to position within the adapter
      */
-    inner class RecycleHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class RecycleHolder(itemView: View,val itemClick: (Category) -> Unit) : RecyclerView.ViewHolder(itemView) {
         val catergoryImage: ImageView = itemView.findViewById(R.id.catergoryView)
         val catergoryName :TextView = itemView.findViewById(R.id.catergory_name)
 
@@ -54,7 +54,10 @@ class CatergoryRecyclerAdapter(val context: Context, val catergories: List<Categ
             val resourceId = context.resources.getIdentifier(catergory.image,"drawable",context.packageName)
             catergoryImage.setImageResource(resourceId)
             catergoryName.text = catergory.title
-
+            /**
+             * set on click listener for each item
+             */
+            itemView.setOnClickListener { itemClick(catergory) }
         }
     }
 }
