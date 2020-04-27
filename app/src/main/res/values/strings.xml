@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ShopSwag</string>
     <string name="listview">listview</string>
+    <string name="product_details">Product Details</string>
+    <string name="product_details_image">product details image</string>
+    <string name="catergories">Catergories</string>
+    <string name="products">Products</string>
 </resources>
